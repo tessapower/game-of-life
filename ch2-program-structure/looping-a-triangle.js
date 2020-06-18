@@ -9,9 +9,10 @@
  * #######
  */
 
-let triangle = "#";
-
-while (triangle.length <= 7) {
-    console.log(triangle);
-    triangle += "#";
+function loopATriangle() {
+    let triangle = "#";
+    while (triangle.length <= 7) {
+      console.log(triangle);
+      triangle += "#";
+    }
 }
