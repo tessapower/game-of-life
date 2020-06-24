@@ -18,3 +18,5 @@ function countChar(string, char) {
     return count;
 }
 
+exports.countBs = countBs;
+exports.countChar = countChar;
