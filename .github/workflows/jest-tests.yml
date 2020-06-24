@@ -5,7 +5,7 @@ name: Jest Tests
 
 on:
   push:
-    branches: [ master ]
+    branches: [ master, chapter* ]
   pull_request:
     branches: [ master ]
 
