@@ -25,3 +25,6 @@ function reverseArrayInPlace(array) {
     }
     return array;
 }
+
+exports.reverseArray = reverseArray;
+exports.reverseArrayInPlace = reverseArrayInPlace;
