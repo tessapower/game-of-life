@@ -8,7 +8,7 @@
  * typeof null also produces "object".
  */
 
-function deepEqual(x, y) {
+module.exports = function deepEqual(x, y) {
     // Base case: compare types and values of the passed arguments
     if (x === y) {
         return true;

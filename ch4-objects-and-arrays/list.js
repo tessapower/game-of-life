@@ -88,3 +88,8 @@ function nth(list, index) {
         return element;
     }
 }
+
+exports.arrayToList = arrayToList;
+exports.listToArray = listToArray;
+exports.prepend = prepend;
+exports.nth = nth;

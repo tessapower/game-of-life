@@ -55,3 +55,6 @@ function sum(range) {
     }
     return sum;
 }
+
+exports.range = range;
+exports.sum = sum;
