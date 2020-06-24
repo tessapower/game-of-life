@@ -4,7 +4,7 @@
  * Why? Can you think of a way to fix this?
  */
 
-function isEven(x) {
+module.exports = function isEven(x) {
     if (x == 0) {
         return true;
     } else if (x == 1) {
@@ -15,4 +15,3 @@ function isEven(x) {
         return (isEven(x-2));
     }
 }
-
