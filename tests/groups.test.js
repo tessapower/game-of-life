@@ -33,4 +33,3 @@ test('Add a new value to the set if it doesn\'t already exist', () => {
     group4.add(30);
     expect(group4.values).toEqual([ 10, 20, 1, 2, 0, 30 ]);
 });
-
