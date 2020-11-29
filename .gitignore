@@ -52,6 +52,9 @@ bower_components
 connect.lock
 typings
 
+# temp files
+*.swp
+
 # Logs
 logs
 *.log
