@@ -32,3 +32,6 @@ function soon(val) {
     setTimeout(() => resolve(val), Math.random() * 500);
   });
 }
+
+exports.all = Promise_all;
+exports.soon = soon;

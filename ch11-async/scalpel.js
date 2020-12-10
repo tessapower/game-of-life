@@ -15,6 +15,8 @@
  * that you may assume that every nest has a "scalpel" entry in its data storage.
  * 
  * Next, write the same function again without using async and await.
+ * 
+ * This code can be tested here: https://eloquentjavascript.net/code/#11.1
  */
 
 async function locateScalpel(nest) {
