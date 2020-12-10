@@ -9,8 +9,6 @@
  * replacement.
  */
 
- let text = "'I'm the cook,' he said, 'it's my job.'";
- let regex = /^'|(\W)'|'(\W)/g,
+let regex = /^'|(\W)'|'(\W)/g;
 
- console.log(text.replace(/^'|(\W)'|'(\W)/g, "$1\"$2"));
- // Expected output: "I'm the cook," he said, "it's my job."
+exports.replaceQuotes = regex;

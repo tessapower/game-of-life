@@ -12,49 +12,30 @@
  */
 
 // "car" and "cat"
-verify(/ca(r|t)/,
-    ["my car", "bad cats"],
-    ["camper", "high art"]);
+let carOrCat = /ca(r|t)/;
     
 // "pop" and "prop"
-verify(/pr?op/,
-    ["pop culture", "mad props"],
-    ["plop", "prrrop"]);
+let popOrProp = /pr?op/;
 
 // "ferret", "ferry", and "ferrari"
-verify(/ferr(et|y|ari)/,
-    ["ferret", "ferry", "ferrari"],
-    ["ferrum", "transfer A"]);
+let ferretFerryFerrari = /ferr(et|y|ari)/;
 
 // Any word ending in "ious"
-verify(/ious\b/,
-    ["how delicious", "spacious room"],
-    ["ruinous", "consciousness"]);
+let ious = /ious\b/;
 
 // A whitespace character followed by a period, comma, colon, or semicolon
-verify(/\s(\.|\,|\:|\;)/,
-    ["bad punctuation ."],
-    ["escape the period"]);
+let wsThenSymbol = /\s(\.|\,|\:|\;)/;
 
 // A word longer than six letters
-verify(/\w{6,}/,
-    ["Siebentausenddreihundertzweiundzwanzig"],
-    ["no", "three small words"]);
+let wordLongerThan6 = /\w{6,}/;
                 
 // A word without the letter "e" (or "E")
-verify(/\b[^/We]+\b/i,
-   ["red platypus", "wobbling nest"],
-   ["earth bed", "learning ape", "BEET"]);
+let wordWithoutE = /\b[^/We]+\b/i;
 
-function verify(regexp, yes, no) {
-  // Ignore unfinished exercises
-  if (regexp.source == "...") return;
-  for (let str of yes) if (!regexp.test(str)) {
-    console.log(`Failure to match '${str}'`);
-  }
-  for (let str of no) if (regexp.test(str)) {
-    console.log(`Unexpected match for '${str}'`);
-  }
-}
-
-exports.verify = verify;
+exports.carOrCat = carOrCat;
+exports.popOrProp = popOrProp;
+exports.ferretFerryFerrari = ferretFerryFerrari;
+exports.ious = ious;
+exports.wsThenSymbol = wsThenSymbol;
+exports.wordLongerThan6 = wordLongerThan6;
+exports.wordWithoutE = wordWithoutE;
