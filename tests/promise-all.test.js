@@ -15,6 +15,6 @@ test('tests if promise returns empty array if called without arguments', () => {
 
 test('tests if Promise.reject throws error as expected', () => {
     let failArray = [promise.soon(1), Promise.reject("X"), promise.soon(3)];
-    expect.assertions(1);
     return promise.all(failArray).catch(e => expect(e).toMatch("X"));
 });
+
