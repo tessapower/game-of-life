@@ -20,7 +20,6 @@ function reliableMultiply(a, b) {
     for (;;) {
         try {
             let result = primitiveMultiply(a, b);
-            console.log(`${a} * ${b} = ${result}`);
             return result;
         } catch (error) {
             if (!(error instanceof MultiplicatorUnitFailure)) throw error;
@@ -28,6 +27,4 @@ function reliableMultiply(a, b) {
     }
 }
 
-module.exports = { MultiplicatorUnitFailure };
-exports.reliableMultiply = reliableMultiply;
-exports.primitiveMultiply = primitiveMultiply;
+module.exports = { MultiplicatorUnitFailure, reliableMultiply };
