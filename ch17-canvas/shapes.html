@@ -1,0 +1,84 @@
+<!doctype html>
+<script src="code/chapter/16_game.js"></script>
+<script src="code/levels.js"></script>
+<script src="code/chapter/17_canvas.js"></script>
+
+<canvas width="600" height="200"></canvas>
+<script>
+  let cx = document.querySelector("canvas").getContext("2d");
+  
+  // 1. Trapezoid 
+  function drawTrapezoid(startX, startY) {
+  	cx.beginPath();
+  	cx.moveTo(startX, startY);
+  	cx.lineTo((startX+100), startY); // ___
+  	cx.lineTo((startX+80), (startY-50)); // ___\
+  	cx.lineTo((startX+20), (startY-50));
+  	cx.closePath();
+  	cx.stroke();
+  }
+
+  // 2. Red diamond
+  function drawDiamond(startX, startY, color) {
+  	cx.beginPath();
+    let angle = 0.25 * Math.PI;
+  	cx.fillStyle = color;
+    cx.rotate(angle);
+    cx.fillRect(startX, startY, 75, 75);
+    cx.rotate(-angle);
+  }
+  
+  // 3. Zigzagging line
+  function drawZigzag(startX, startY) {
+  	cx.beginPath();
+  	cx.moveTo(startX, startY);
+  	let currentX = startX, currentY = startY;
+  	for (let i = 0; i < 6; i++) {
+  	  currentX += 75;
+  	  currentY -= 5;
+  	  cx.lineTo(currentX, currentY)
+  	  currentX -= 75;
+  	  currentY -= 5;
+  	  cx.lineTo(currentX, currentY);
+  	}
+  	cx.stroke();
+  }
+  
+  // 4. Spiral made up of 100 straight line segments
+  function drawSpiral (startX, startY) {
+  	cx.beginPath();
+  	let radius = 50;
+    let startAngle = 0;
+    let endAngle = 0.075 * Math.PI
+    let increment = 0.075 * Math.PI;
+  	for (let i = 0; i < 100; i++) {
+      cx.arc(startX, startY, radius, startAngle, endAngle);
+      startAngle += increment;
+      endAngle += increment;
+      radius -= 0.5;
+  	}
+    cx.stroke();
+  }
+  
+  
+  // 5. Yellow star
+  function drawStar(startX, startY, numberOfPoints, color) {
+    let radius = 50, xCenter = startX + radius, yCenter = startY + radius;
+    cx.beginPath();
+    cx.moveTo(xCenter + radius, yCenter);
+    for (let i = 1; i <= numberOfPoints; i++) {
+      let angle = i * Math.PI / (numberOfPoints/2);
+      cx.quadraticCurveTo(xCenter, yCenter,
+                          xCenter + Math.cos(angle) * radius,
+                          yCenter + Math.sin(angle) * radius);
+    }
+    cx.fillStyle = color;
+    cx.fill();
+  }
+
+  drawTrapezoid(20, 100);
+  drawDiamond(125, -125, "red");
+  drawZigzag(250, 90);
+  drawSpiral(400, 50);
+  drawStar(500, 20, 8, "gold");
+</script>
