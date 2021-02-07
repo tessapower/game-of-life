@@ -1,8 +1,7 @@
 const { Point } = require("./point");
 
 class Grid {
-  constructor({width: width=2, height: height=width, defaultValue: defaultValue=null} = {}) {
-
+  constructor({width: width=0, height: height=width, defaultValue: defaultValue=null} = {}) {
     if (typeof width != "number" || typeof height != "number") {
       throw new TypeError("Invalid width or height");
     }
@@ -10,8 +9,8 @@ class Grid {
     width = Math.trunc(width);
     height = Math.trunc(height);
 
-    if (width < 1 || height < 1) {
-      throw new RangeError("Invalid width or height")
+    if (width < 0 || height < 0) {
+      throw new RangeError("Error: invalid width or height")
     }
 
     this.width = width;
