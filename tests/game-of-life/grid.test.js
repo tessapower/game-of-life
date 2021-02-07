@@ -2,60 +2,56 @@ const { Grid } = require('../../game-of-life/grid');
 const { Point } = require('../../game-of-life/point');
 
 // Grid Creation Tests
-
-test('tests that a new 2x4 grid is created', () => {
+test('a new 2x4 grid can be created', () => {
   let grid = new Grid({width: 2, height: 4});
 
   expect(grid.width).toBe(2);
   expect(grid.height).toBe(4);
 });
 
-
-test('tests that a grid cannot be created with negative width or height', () => {
+test('a new grid cannot be created with negative width or height', () => {
   expect(
     () => new Grid({width: -2, height: 5})
-  ).toThrowError("Invalid width or height");
+  ).toThrowError("Error: invalid width or height");
 });
 
-
-test('tests that a grid cannot be created with non-number datatypes', () => {
+test('a new grid cannot be created with non-number datatypes', () => {
   expect(
     () => new Grid({width: "two", height: "three"})
-  ).toThrowError("Invalid width or height");
+  ).toThrowError("Error: invalid width or height");
 
   expect(
     () => new Grid({width: true, height: false})
-  ).toThrowError("Invalid width or height");
+  ).toThrowError("Error: invalid width or height");
 });
 
-test('tests that the default grid will be created if called with no args', () => {
+test('calling new Grid() with no args creates a 0x0 grid', () => {
   let grid = new Grid();
-  expect(grid.width).toBe(2);
+  expect(grid.width).toBe(0);
   expect(grid.height).toBe(grid.width);
-  
-  for (let i = 0; i < grid.height; i++) {
-    for (let j = 0; j < grid.width; j++) {
-      expect(grid.getValueAt({x: j, y: i})).toBeNull;
-    }
+});
+
+test('calling new Grid() with no defaultValue arg sets all points to null', () => {
+  let grid = new Grid({width: 2});
+  for (let point of grid) {
+    expect(grid.getValueAt(point)).toBeNull;
   }
 });
 
-test('tests that grid height = width if called with only width arg', () => {
+test('calling new Grid() with a defaultValue arg sets all points to the default value', () => {
+  let grid = new Grid({width: 2, defaultValue: "foo"});
+  for (let point of grid) {
+    expect(grid.getValueAt(point)).toBe("foo");
+  }
+});
+
+test('calling new Grid() with only width arg sets height = width', () => {
   let grid = new Grid({width: 3});
   expect(grid.height).toBe(grid.width);
 });
 
-test('tests if all values in a new grid are null by default', () => {
-  let grid = new Grid({width: 2, height: 2});
-
-  for (let {x, y} of grid) {
-    expect(grid.getValueAt({x: x, y: y})).toBeNull;
-  }
-});
-
 // Grid Method Tests
-
-test('tests if value at point in grid can be set', () => {
+test('value at point in grid can be set', () => {
   let grid = new Grid({width: 4, height: 4});
   
   let point = new Point({x: 0, y: 3});
@@ -66,7 +62,7 @@ test('tests if value at point in grid can be set', () => {
   expect(grid.getValueAt(point)).toBeFalsy;
 });
 
-test('tests that grid.has() returns if grid contains point correctly', () => {
+test('grid.contains() returns if grid contains point correctly', () => {
   let grid = new Grid({width: 2, height: 2});
 
   let invalidPoint = new Point({x: -1, y: 0});
@@ -78,7 +74,26 @@ test('tests that grid.has() returns if grid contains point correctly', () => {
 
 // Grid Iteration Tests
 
-test('tests that a grid can be iterated over', () =>{
+test('a 0x0 grid can be iterated over', () => {
+  let grid = new Grid();
+  let count = 0;
+
+  for (let point of grid) count++;
+
+  expect(count).toBe(0);
+});
+
+
+test('a 1x1 grid can be iterated over', () => {
+  let grid = new Grid({width: 1});
+  let count = 0;
+
+  for (let point of grid) count++;
+
+  expect(count).toBe(1);
+});
+
+test('a grid can be iterated over', () =>{
   let grid = new Grid({width: 4, height: 2});
   
   let value = 0;
@@ -87,17 +102,8 @@ test('tests that a grid can be iterated over', () =>{
     grid.setValueAt(point, value);
   }
 
-  let expectedGrid = [ [ 1, 2, 3, 4 ],
+  let expectedValues = [ [ 1, 2, 3, 4 ],
                        [ 5, 6, 7, 8 ] ];
 
-  expect(grid.content).toStrictEqual(expectedGrid);
-});
-
-test('tests that a 1x1 grid can be iterated over', () => {
-  let grid = new Grid({width: 1}); // [0][0]
-  
-  for (let point of grid) {
-    grid.setValueAt(point, 1);
-  }
-  expect(grid.getValueAt(new Point({x: 0, y: 0}))).toBe(1);
+  expect(grid.content).toEqual(expect.arrayContaining(expectedValues));
 });
