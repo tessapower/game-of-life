@@ -102,8 +102,8 @@ test('a grid can be iterated over', () =>{
     grid.setValueAt(point, value);
   }
 
-  let expectedValues = [ [ 1, 2, 3, 4 ],
-                       [ 5, 6, 7, 8 ] ];
+  let expectedValues = [[ 1, 2, 3, 4 ],
+                        [ 5, 6, 7, 8 ]];
 
   expect(grid.content).toEqual(expect.arrayContaining(expectedValues));
 });
