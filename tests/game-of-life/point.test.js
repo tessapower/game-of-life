@@ -13,7 +13,7 @@ test('tests if new point can be created', () => {
   let negXposY = new Point({x: -5,  y:  1});
   expect(negXposY).toEqual(expect.objectContaining({x: -5, y: 1}));
   
-  let origin   = new Point({x:  0,  y:  0});
+  let origin = new Point({x:  0,  y:  0});
   expect(origin).toEqual(expect.objectContaining({x: 0, y: 0}));
 });
 
@@ -65,7 +65,7 @@ test('tests if point.topLeft() returns correct point one up and to the left of a
   expect(point.topLeft).toEqual({x: 1, y: 4});
 });
 
-test('tests if new point has correct neighboring points [up, down, left, right, topLeft, bottomLeft, topRight, bottomRight]', () => {
+test('tests if new point has correct neighboring points [topLeft, up, topRight, left, right, bottomLeft, down, bottomRight]', () => {
   let origin = new Point({x: 0, y: 0});
 
   /* Expected neighbors of origin:
@@ -74,10 +74,9 @@ test('tests if new point has correct neighboring points [up, down, left, right, 
     [-1,-1] [ 0,-1] [ 1,-1]
   */
 
-  let expectedNeighbors = [{x:  0, y: 1}, {x:  0, y: -1},
-                           {x: -1, y: 0}, {x:  1, y:  0},
-                           {x: -1, y: 1}, {x: -1, y: -1},
-                           {x:  1, y: 1}, {x:  1, y: -1}];
+  let expectedNeighbors = [{x: -1, y:  1}, {x:  0, y:  1}, {x:  1, y:  1},
+                           {x: -1, y:  0},  /* origin */   {x:  1, y:  0},
+                           {x: -1, y: -1}, {x:  0, y: -1}, {x:  1, y: -1}];
 
   expect(origin.neighbors).toEqual(expect.arrayContaining(expectedNeighbors));
 
@@ -88,10 +87,9 @@ test('tests if new point has correct neighboring points [up, down, left, right, 
     [ 0, 3] [ 1, 3] [ 2, 3]
     [ 0, 2] [ 1, 2] [ 2, 2]
   */
-  expectedNeighbors = [{x: 1, y: 4}, {x: 1, y: 2},
-                       {x: 0, y: 3}, {x: 2, y: 3},
-                       {x: 0, y: 4}, {x: 0, y: 2},
-                       {x: 2, y: 4}, {x: 2, y: 2}];
+  expectedNeighbors = [{x: 0, y: 4}, {x: 1, y: 4}, {x: 2, y: 4},
+                       {x: 0, y: 3}, /* posXposY */{x: 2, y: 3},
+                       {x: 0, y: 2}, {x: 1, y: 2}, {x: 2, y: 2}];
 
   expect(posXposY.neighbors).toEqual(expect.arrayContaining(expectedNeighbors));
 });
