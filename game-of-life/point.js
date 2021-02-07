@@ -11,7 +11,10 @@ class Point {
   }
 
   get neighbors() {
-    return [this.up, this.topRight, this.right,  this.bottomRight, this.down, this.bottomLeft, this.left, this.topLeft];
+    return [this.up,       this.down,
+            this.left,     this.right,
+            this.topLeft,  this.bottomLeft,
+            this.topRight, this.bottomRight];
   }
   
   get up() {
