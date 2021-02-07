@@ -57,6 +57,17 @@ class Grid {
 
     return withinXBounds && withinYBounds;
   }
+
+  isEqualTo(otherGrid) {
+
+    let isEqual = true;
+    if (!(otherGrid instanceof Grid)) isEqual = false;
+    for (let point of this) {
+      if (this.getValueAt(point) != otherGrid.getValueAt(point)) isEqual = false;
+    }
+
+     return isEqual;
+  }
 }
 
 Grid.prototype[Symbol.iterator] = function() {
