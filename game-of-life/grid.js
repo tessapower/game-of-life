@@ -3,7 +3,7 @@ const { Point } = require("./point");
 class Grid {
   constructor({width: width=0, height: height=width, defaultValue: defaultValue=null} = {}) {
     if (typeof width != "number" || typeof height != "number") {
-      throw new TypeError("Invalid width or height");
+      throw new TypeError("Error: invalid width or height");
     }
     
     width = Math.trunc(width);
@@ -26,23 +26,19 @@ class Grid {
   }
 
   getValueAt(point) {
-    point.x = Math.trunc(point.x);
-    point.y = Math.trunc(point.y);
-
     if (!this.contains(point)) {
-      throw RangeError(point, " not within bounds of grid");
+      throw RangeError("Error: unable to get value at ", point);
     }
 
     return this.content[point.y][point.x];
   }
 
   setValueAt(point, value) {
-
     point.x = Math.trunc(point.x);
     point.y = Math.trunc(point.y);
 
     if (!this.contains(point)) {
-      throw new RangeError("Unable to set value at: ", point);
+      throw new RangeError("Error: unable to set value at ", point);
     }
 
     this.content[point.y][point.x] = value;
