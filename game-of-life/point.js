@@ -21,8 +21,7 @@ class Point {
     return new Point({x: this.x, y: this.y + 1});
   }
 
-  get topRight()
-  {
+  get topRight() {
     return new Point({x: this.x + 1, y: this.y + 1});
   }
 
