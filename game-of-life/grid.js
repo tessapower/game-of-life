@@ -54,7 +54,6 @@ class Grid {
   }
 
   isEqualTo(otherGrid) {
-
     let isEqual = true;
     if (!(otherGrid instanceof Grid)) isEqual = false;
     for (let point of this) {
