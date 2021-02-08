@@ -62,7 +62,7 @@ test('value at point in grid can be set', () => {
   expect(grid.getValueAt(point)).toBeFalsy;
 });
 
-test('grid.contains() returns if grid contains point correctly', () => {
+test('returns if grid contains point correctly', () => {
   let grid = new Grid({width: 2, height: 2});
 
   let invalidPoint = new Point({x: -1, y: 0});
@@ -70,6 +70,28 @@ test('grid.contains() returns if grid contains point correctly', () => {
 
   let validPoint = new Point({x: 0, y: 2});
   expect(grid.contains(validPoint)).toBeTruthy;
+});
+
+test('two grids can correctly be compared', () => {
+
+  let grid = new Grid({width: 2});
+  grid.content = [["x", " "],
+                  [" ", "x"]];
+
+  // passing grid
+  let equalGrid = new Grid({width: 2});
+  equalGrid.content = [["x", " "],
+                       [" ", "x"]];
+
+  expect(grid.isEqualTo(equalGrid)).toBeTruthy;
+
+  // failing grids
+  let differentSizeGrid = new Grid({width: 3});
+  expect(grid.isEqualTo(differentSizeGrid)).toBeFalsy;
+
+  let sameSizeDifferentValuesGrid = new Grid({width: 2, defaultValue: true});
+  expect(grid.isEqualTo(sameSizeDifferentValuesGrid)).toBeFalsy;
+
 });
 
 // Grid Iteration Tests
