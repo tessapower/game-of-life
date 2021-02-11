@@ -2,7 +2,7 @@ const htmlTable = require("./table.js");
 const gameLogic = require("./game-logic.js");
 const { Grid } = require("./grid.js");
 
-let gameOfLife, randomBtn, nextBtn, runBtn;
+let gameOfLife, randomBtn, nextBtn, runBtn, grid;
 
 setup();
 
@@ -38,32 +38,36 @@ function setup() {
   gameOfLife = document.getElementById("gameOfLife");
 
   // Create initial grid
-  let grid = new Grid({width: 75, height: 35, defaultValue: " "});
-  setCurrentGrid(grid);
+  grid = new Grid({width: 100, height: 50, defaultValue: " "});
+  render(grid);
 
-  // Watch if user makes manual changes to grid
-  let cells = document.querySelectorAll("checkbox");
-  cells.addEventListener("input", console.log("You changed: ", event.currentTarget));
 }
 
 function update() {
-  let currentGrid = getCurrentGrid();
-  let updatedGrid = gameLogic.nextState(currentGrid);
-  setCurrentGrid(updatedGrid);
+  grid = gameLogic.nextState(grid);
+  render(grid);
 }
 
 function randomize() {
-  let currentGrid = getCurrentGrid();
-  let randomGrid = gameLogic.randomize(currentGrid);
-  setCurrentGrid(randomGrid);
+  grid = gameLogic.randomize(grid);
+  render(grid);
 }
 
-function getCurrentGrid() {
-  let currentTable = document.querySelector("table").cloneNode(true);
-  return htmlTable.htmlTableToGrid(currentTable);
+function render(grid) {
+  gameOfLife.replaceChildren(htmlTable.gridToHtmlTable(grid));
+  addClickListenersToGrid();
 }
 
-function setCurrentGrid(grid) {
-  let updatedTable = htmlTable.gridToHtmlTable(grid);
-  gameOfLife.replaceChildren(updatedTable);
+// This needs to be called each time the grid is rendered
+function addClickListenersToGrid() {
+  let gridCells = document.querySelectorAll("input");
+  let index= 0;
+  for (let cell of gridCells) {
+    let x = index % grid.width;
+    let y = (index - x) / grid.width;
+    cell.addEventListener("input", () => {
+      gameLogic.setIsAlive({x: x, y: y}, grid, !gameLogic.isAlive({x: x, y: y}, grid));
+    });
+    index++;
+  }
 }
