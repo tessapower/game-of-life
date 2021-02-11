@@ -1,6 +1,6 @@
-const { Grid } = require('../../game-of-life/grid');
-const { Point } = require('../../game-of-life/point');
-const gameLogic = require('../../game-of-life/game-logic');
+const { Grid } = require('../../game-of-life/src/grid');
+const { Point } = require('../../game-of-life/src/point');
+const gameLogic = require('../../game-of-life/src/game-logic');
 
 // isAlive() Tests
 
