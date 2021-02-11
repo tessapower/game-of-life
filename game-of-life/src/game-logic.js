@@ -46,6 +46,7 @@ function randomize(grid) {
 
 
 exports.isAlive = isAlive;
+exports.setIsAlive = setIsAlive;
 exports.numAliveNeighbors = numAliveNeighbors;
 exports.willPointLive = willPointLive;
 exports.nextState = nextState;
