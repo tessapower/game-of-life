@@ -1,4 +1,4 @@
-const { Grid } = require('./grid');
+const { Grid } = require("./grid");
 
 function isAlive(point, grid) {
   return grid.getValueAt(point) == "x";
@@ -37,7 +37,16 @@ function nextState(grid) {
   return nextGrid;
 }
 
+function randomize(grid) {
+  for (let point of grid) {
+    setIsAlive(point, grid, (Math.random() > 0.5 ? true : false));
+  }
+  return grid;
+}
+
+
 exports.isAlive = isAlive;
 exports.numAliveNeighbors = numAliveNeighbors;
 exports.willPointLive = willPointLive;
 exports.nextState = nextState;
+exports.randomize = randomize;
