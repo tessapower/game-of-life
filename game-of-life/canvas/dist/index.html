@@ -1,31 +1,16 @@
 <!DOCTYPE html>
+<!--Canvas Game of Life-->
 <html lang="en-US">
   <head>
     <meta charset="utf-8">
     <title>Conway's Game of Life</title>
   </head>
-  <style>
-    input[type="checkbox" i] {
-      margin: 0px;
-    }
-    table {
-      border-spacing: 0;
-      border-collapse: collapse;
-    }
-    tr {
-      height: 10px;
-    }
-    td {
-      width: 10px;
-      height: 10px;
-      padding: 0;
-    }
-  </style>
   <body>
     <button id="random">Randomize</button>
     <button id="next">Next</button>
     <button id="run" style="background-color: mediumseagreen; color: whitesmoke;">▶</button>
-    <div id="gameOfLife"></div>
+    <br>
+    <canvas id="gameOfLife"></canvas>
     <script src="main.js"></script>
   </body>
 </html>
