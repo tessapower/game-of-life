@@ -1,6 +1,6 @@
-const { Grid } = require("../../game-of-life/src/grid");
-const gameLogic = require("../../game-of-life/src/game-logic")
-const htmlTable = require("../../game-of-life/src/table");
+const { Grid } = require("../scripts/grid");
+const gameLogic = require("../scripts/game-logic")
+const htmlTable = require("../scripts/table");
 
 // HMTL Table creation tests
 test('a string with correct HTML for a table can be created from a grid', () => {
