@@ -1,5 +1,7 @@
 # Conway's Game of Life
 
+![Jest Tests](https://github.com/tessapower/game-of-life/workflows/Jest%20Tests/badge.svg)
+
 This is Conway's Game of Life!
 
 Inspired by one of the exercises in Chapter 18 of Eloquent Javascript, where the reader must implement the Game of Life by displaying a grid of checkbox fields on a webpage, with a button next to it to advance to the next generation.
