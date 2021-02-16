@@ -4,10 +4,8 @@
 name: Jest Tests
 
 on:
-  push:
-    branches: [ master, chapter* ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
