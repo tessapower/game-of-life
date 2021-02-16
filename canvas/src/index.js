@@ -3,7 +3,7 @@
 const gameLogic = require("../../scripts/game-logic");
 const { Grid } = require("../../scripts/grid.js");
 
-let gameOfLife, canvas, scale, randomBtn, nextBtn, runBtn, grid;
+let gameOfLife, canvas, scale, randomBtn, nextBtn, runBtn, grid, tune;
 
 setup();
 
@@ -18,12 +18,18 @@ function setup() {
   nextBtn = document.getElementById("next");
   nextBtn.addEventListener("click", update);
 
+  // Delightful tune
+  tune = document.getElementById("tune");
+  tune.src="../../assets/tune.mp3";
+
   // Run Button
   runBtn = document.getElementById("run");
   let running = null;
+
   runBtn.addEventListener("click", () => {
     if (running) {
       clearInterval(running);
+      tune.pause();
       running = null;
       runBtn.textContent = "▶";
       runBtn.style.backgroundColor = "MediumSeaGreen";
@@ -32,7 +38,8 @@ function setup() {
       runBtn.textContent = "❙❙";
       runBtn.style.backgroundColor = "Salmon";
       nextBtn.setAttribute("disabled", "true");
-     running = setInterval(update, 250);
+      tune.play();
+      running = setInterval(update, 250);
     }
   });
 
