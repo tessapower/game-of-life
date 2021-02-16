@@ -1,5 +1,5 @@
-const { Grid } = require('../../game-of-life/src/grid');
-const { Point } = require('../../game-of-life/src/point');
+const { Grid } = require('../scripts/grid');
+const { Point } = require('../scripts/point');
 
 // Grid Creation Tests
 test('a new 2x4 grid can be created', () => {
