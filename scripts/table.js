@@ -1,6 +1,14 @@
 const gameLogic = require("./game-logic");
 const { Grid } = require("./grid");
 
+/**
+ * Creates an a string containing an HTML table from a grid, representing
+ * "alive" cells with a checked checkbox and "dead" cells with an empty checkbox.
+ *
+ * @param {Grid} grid - The grid to create an HTML table from.
+ * @returns A string containing the HTML for a table created from the provided
+ * grid.
+ */
 function gridToHtmlString(grid) {
   let width = grid.width;
   let height = grid.height;
@@ -24,6 +32,13 @@ function gridToHtmlString(grid) {
   return htmlString;
 }
 
+/**
+ * Creates an HTML table from a grid, representing "alive" cells with a checked
+ * checkbox and "dead" cells with an empty checkbox.
+ *
+ * @param {Grid} grid - The Grid to create an HTML table from.
+ * @returns An HTMLTableElement.
+ */
 function gridToHtmlTable(grid) {
   let width = grid.width;
   let height = grid.height;
@@ -48,6 +63,13 @@ function gridToHtmlTable(grid) {
   return htmlTable;
 }
 
+/**
+ * Creates a grid from an HTML table, "alive" cells are created from checked
+ * checkbox and "dead" cells are created from empty checkboxes.
+ *
+ * @param {HTMLTableElement} table - The HTML table to create a grid from.
+ * @returns A Grid created from the provided table.
+ */
 function htmlTableToGrid(table) {
   let rows = table.rows;
   let height = 0, width = 0;
