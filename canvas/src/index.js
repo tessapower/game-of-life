@@ -86,7 +86,7 @@ function render(grid) {
   canvas.fillRect(0, 0, gameOfLife.width, gameOfLife.height);
   for (let point of grid) {
     if (gameLogic.isAlive(point, grid)){
-      canvas.fillStyle = "green";
+      canvas.fillStyle = "#68F";
       canvas.fillRect((point.x * scale), (point.y * scale), (1 * scale), (1 * scale));
     }
   }
