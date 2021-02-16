@@ -1,6 +1,17 @@
 const { Point } = require("./point");
 
 class Grid {
+  /**
+   * Represents a grid of values.
+   *
+   * @param {number} width - the integer width of the grid; defaults to 0 if
+   * not provided.
+   * @param {number} height - the integer height of the grid; defaults to the
+   * same integer as the width if not provided.
+   * @param {any} defaultValue - the default value found at each point of the
+   * grid; defaults to null if not provided.
+   * @returns Grid
+   */
   constructor({width: width=0, height: height=width, defaultValue: defaultValue=null} = {}) {
     if (typeof width != "number" || typeof height != "number") {
       throw new TypeError("Error: invalid width or height");
@@ -25,6 +36,13 @@ class Grid {
     }
   }
 
+  /**
+   * Gets the value found in the grid at the given point.
+   *
+   * @param {Point} point - A Point with an x and y coordinate, can be
+   * represented as {x: x, y: y}.
+   * @returns Value found at given point in grid.
+   */
   getValueAt(point) {
     if (!this.contains(point)) {
       throw RangeError("Error: unable to get value at ", point);
@@ -33,6 +51,14 @@ class Grid {
     return this.content[point.y][point.x];
   }
 
+  /**
+   * Sets the value in the grid at the given point.
+   *
+   * @param {Point} point - A Point with an x and y coordinate, can be
+   * represented as {x: x, y: y}.
+   * @param {any} value - The value that should be set at the given point.
+   * @returns Grid with new value set at the given point.
+   */
   setValueAt(point, value) {
     point.x = Math.trunc(point.x);
     point.y = Math.trunc(point.y);
@@ -46,6 +72,12 @@ class Grid {
     return this.content;
   }
 
+  /**
+   * Returns if the given point is within the bounds of the grid.
+   *
+   * @param {Point} point - A Point with an x and y coordinate, can be
+   * represented as {x: x, y: y}.
+   */
   contains(point) {
     let withinXBounds = point.x < this.width  && point.x >= 0;
     let withinYBounds = point.y < this.height && point.y >= 0;
@@ -53,6 +85,11 @@ class Grid {
     return withinXBounds && withinYBounds;
   }
 
+  /**
+   * Returns if two grids have the same width, height, and values.
+   *
+   * @param {Grid} otherGrid - The grid to compare to.
+   */
   isEqualTo(otherGrid) {
     let isEqual = true;
     if (!(otherGrid instanceof Grid)) isEqual = false;
@@ -67,6 +104,23 @@ class Grid {
 Grid.prototype[Symbol.iterator] = function() {
   return new GridIterator(this);
 };
+
+
+/**
+ * Provides an interface to loop over each entry in a grid row-by-row.
+ * Can be used in the following ways:
+ *
+ *     grid.ForEach(point => foo(point));
+ *     for (let point of grid) {
+ *       bar(point.x);
+ *     }
+ *
+ * A point can also be represented as {x, y}, e.g.
+ *
+ *     for (let {x, y} of grid) {
+ *      if (x % 3 == 0 && y % 5 == 0) fizzBuzz();
+ *     }
+ */
 
 class GridIterator {
 
