@@ -1,4 +1,4 @@
-const { Point } = require("../../game-of-life/src/point");
+const { Point } = require("../scripts/point");
 
 test('tests if new point can be created', () => {
   let posXposY = new Point({x: 12,  y:  3});
