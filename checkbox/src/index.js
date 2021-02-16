@@ -39,28 +39,45 @@ function setup() {
   // Get div where grid will be displayed
   gameOfLife = document.getElementById("gameOfLife");
 
-  // Create initial grid
-  grid = new Grid({width: 100, height: 50, defaultValue: " "});
+  // Create initial empty grid and render it on the webpage.
+  grid = new Grid({width: 150, height: 75, defaultValue: " "});
   render(grid);
 
 }
 
+/**
+ * Determines the next generation of the grid and renders it on the webpage.
+ */
 function update() {
   grid = gameLogic.nextState(grid);
   render(grid);
 }
 
+/**
+ * Changes the grid so that each cell has a 50/50 chance of being alive or dead
+ * and renders it on the webpage.
+ */
 function randomize() {
   grid = gameLogic.randomize(grid);
   render(grid);
 }
 
+/**
+ * Replaces the current grid on the webpage with the provided grid.
+ * Adds click listeners to each checkbox (cell) in the grid to watch if the user
+ * toggles a checkbox.
+ *
+ * @param {Grid} grid
+ */
 function render(grid) {
   gameOfLife.replaceChildren(htmlTable.gridToHtmlTable(grid));
   addClickListenersToGrid();
 }
 
-// This needs to be called each time the grid is rendered
+/**
+ * Adds click listeners to all the checkboxes (cells) found in the document.
+ * This needs to be called each time the grid is rendered to watch for user input.
+ */
 function addClickListenersToGrid() {
   let gridCells = document.querySelectorAll("input");
   let index= 0;
