@@ -42,7 +42,7 @@ function setup() {
       runBtn.style.backgroundColor = "Salmon";
       nextBtn.setAttribute("disabled", "true");
       tune.play();
-      running = setInterval(update, 250);
+      running = setInterval(update, 200);
     }
   });
 
@@ -51,11 +51,11 @@ function setup() {
   canvas = gameOfLife.getContext("2d");
 
   // Create and display initial empty grid
-  scale = 4;
+  scale = 5;
   grid = new Grid({width: window.innerWidth/scale, height: window.innerHeight/scale, defaultValue: " "});
   gameOfLife.width = window.innerWidth;
   gameOfLife.height = window.innerHeight;
-  render(grid);
+  randomize(grid);
 }
 
 /**
