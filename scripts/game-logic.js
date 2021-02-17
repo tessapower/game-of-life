@@ -97,7 +97,7 @@ function nextState(grid) {
  */
 function randomize(grid) {
   for (let point of grid) {
-    setIsAlive(point, grid, (Math.random() > 0.5 ? true : false));
+    setIsAlive(point, grid, (Math.random() > 0.7 ? true : false));
   }
   return grid;
 }
