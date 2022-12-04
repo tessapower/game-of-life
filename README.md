@@ -26,7 +26,8 @@ At each step a new generation is created by counting the number of neighbors eac
 2. Any **alive** cell with less than two or more than three alive neighbors dies (as if by isolation or overpopulation). <br>![Rule 2](./docs/images/rule-2.svg)
 3. Any **dead** cell with three alive neighbors becomes an alive cell. <br>![Rule 3](./docs/images/rule-3.svg)
 
-> :warning: The number of alive neighbors is always based on the cells *before* the rule was applied.
+> **Warning**
+> The number of alive neighbors is always based on the cells *before* the rule was applied.
 
 The end result looks like this:
 
